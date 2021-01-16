@@ -1,0 +1,18 @@
+const $button = document.getElementsByTagName('button');
+const buttonLength = $button.length;
+const clickHandler = (e) => {
+  if(e.target.textContent === "<%= quizzes[0].answer %>" ){
+    alert('正解です！');
+    location.href = '/index';
+  } else {
+    alert('不正解');
+  }
+}
+
+let handlerIndex = 0;
+while(handlerIndex < buttonLength){
+  $button[handlerIndex].addEventListener('click', (e) => {
+    clickHandler(e);
+  });
+  handlerIndex++;
+}

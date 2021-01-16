@@ -1,0 +1,45 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title>メイン</title>
+  <%- include('head'); %>
+</head>
+
+<body>
+  <%- include('header'); %>
+  <div class="container">
+      <% if(errors.length > 0) {%>
+        <div id="js-question" class="alert alert-danger" role="alert">
+            <h3>エラー</h3>
+            <ul>
+              <% errors.forEach( error => { %>
+                <li><%= error %></li>
+              <% }); %>
+            </ul>
+        </div>
+      <% } %>
+
+    <div id="js-question" class="alert alert-primary" role="alert">
+      問題と選択肢１〜３を記入してください
+    </div>
+    <form action="/create" method="post">
+      <p>問題</p>
+      <textarea name="question" id="question" cols="30" rows="10"></textarea>
+      <p>選択肢1</p>
+      <input class="form-check-input" type="radio" name="radio1" id="radio1a">
+      <input name="choices1" type="text" class="form-control" placeholder="選択肢1">
+      <p>選択肢2</p>
+      <input class="form-check-input" type="radio" name="radio2" id="radio1a">
+      <input name="choices2" type="text" class="form-control" placeholder="選択肢2">
+      <p>選択肢3</p>
+      <input class="form-check-input" type="radio" name="radio3" id="radio1a">
+      <input name="choices3" type="text" class="form-control" placeholder="選択肢3">
+      <p>正解の選択肢にチェックを入れてください</p>
+      <button type="submit" class="ml-1 btn btn-primary">送信</button>
+  </form>
+  </div>
+</body>
+
+</html>
