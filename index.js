@@ -54,7 +54,7 @@ app.post('/create',
     }
 
     if (errors.length > 0) {
-      res.render('index.ejs', { errors });
+      res.render('index.ejs', { errors: errors });
     } else {
       next();
     }
@@ -76,7 +76,7 @@ app.post('/create',
         connection.query(
           'SELECT * FROM quizzes',
           (error, results) => {
-            res.render('index.ejs', { quizzes: results });
+            res.redirect('/quiz');
           },
         );
       },
