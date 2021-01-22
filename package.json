@@ -2,15 +2,16 @@
   "name": "20200109",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/server/index.js",
+  "private": "true",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint --ext .js .",
     "lint:fix": "eslint --fix --ext .js ."
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
+    "bootstrap": "^5.0.0-beta1",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
     "mysql": "^2.18.1"

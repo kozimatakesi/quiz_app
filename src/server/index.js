@@ -3,6 +3,7 @@ const mysql = require('mysql');
 
 const app = express();
 app.use(express.urlencoded({ extended: false }));
+app.set('views', '../client/views');
 
 const connection = mysql.createConnection({
   host: 'localhost',
@@ -21,21 +22,28 @@ connection.connect((err) => {
 
 // メイン画面
 app.get('/index', (req, res) => {
-  res.render('index.ejs', { errors: [] });
+  res.render('index.ejs', {
+    errors: [], question: [], choices1: [], choices2: [], choices3: [], check1: [], check2: [], check3: [],
+  });
 });
 
 // クイズの作成
 app.post('/create',
 // 入力値の空チェック
   (req, res, next) => {
-    const { question } = req.body;
-    const { choices1 } = req.body;
-    const { choices2 } = req.body;
-    const { choices3 } = req.body;
-    const { radio1 } = req.body;
-    const { radio2 } = req.body;
-    const { radio3 } = req.body;
+    const {
+      question,
+      choices1,
+      choices2,
+      choices3,
+      radio1,
+      radio2,
+      radio3,
+    } = req.body;
     const errors = [];
+    let check1 = '';
+    let check2 = '';
+    let check3 = '';
 
     if (question === '') {
       errors.push('問題が空です');
@@ -49,12 +57,20 @@ app.post('/create',
     if (choices3 === '') {
       errors.push('選択肢3が空です');
     }
-    if (radio1 !== 'on' && radio2 !== 'on' && radio3 !== 'on') {
+    if (radio1 === 'on') {
+      check1 = 'checked';
+    } else if (radio2 === 'on') {
+      check2 = 'checked';
+    } else if (radio3 === 'on') {
+      check3 = 'checked';
+    } else {
       errors.push('正解の選択肢にチェックを入れてください');
     }
 
     if (errors.length > 0) {
-      res.render('index.ejs', { errors: errors });
+      res.render('index.ejs', {
+        errors, question, choices1, choices2, choices3, check1, check2, check3,
+      });
     } else {
       next();
     }

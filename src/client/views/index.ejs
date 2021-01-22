@@ -26,16 +26,16 @@
     </div>
     <form action="/create" method="post">
       <p>問題</p>
-      <textarea name="question" id="question" cols="30" rows="10"></textarea>
+      <textarea name="question" id="question" cols="30" rows="10"><%= question %></textarea>
       <p>選択肢1</p>
-      <input class="form-check-input" type="radio" name="radio1" id="radio1a">
-      <input name="choices1" type="text" class="form-control" placeholder="選択肢1">
+      <input class="form-check-input" type="radio" name="radio1" id="radio1a" <%= check1 %> >
+      <input name="choices1" type="text" class="form-control" placeholder="選択肢1" value="<%= choices1 %>">
       <p>選択肢2</p>
-      <input class="form-check-input" type="radio" name="radio2" id="radio1a">
-      <input name="choices2" type="text" class="form-control" placeholder="選択肢2">
+      <input class="form-check-input" type="radio" name="radio2" id="radio1a" <%= check2 %>>
+      <input name="choices2" type="text" class="form-control" placeholder="選択肢2" value="<%= choices2 %>">
       <p>選択肢3</p>
-      <input class="form-check-input" type="radio" name="radio3" id="radio1a">
-      <input name="choices3" type="text" class="form-control" placeholder="選択肢3">
+      <input class="form-check-input" type="radio" name="radio3" id="radio1a" <%= check3 %>>
+      <input name="choices3" type="text" class="form-control" placeholder="選択肢3" value="<%= choices3 %>">
       <p>正解の選択肢にチェックを入れてください</p>
       <button type="submit" class="ml-1 btn btn-primary">送信</button>
   </form>
