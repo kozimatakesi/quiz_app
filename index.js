@@ -21,7 +21,9 @@ connection.connect((err) => {
 
 // メイン画面
 app.get('/index', (req, res) => {
-  res.render('index.ejs', { errors: [] });
+  res.render('index.ejs', {
+    errors: [], question: [], choices1: [], choices2: [], choices3: [], check1: [], check2: [], check3: [],
+  });
 });
 
 // クイズの作成
@@ -38,6 +40,9 @@ app.post('/create',
       radio3,
     } = req.body;
     const errors = [];
+    let check1 = '';
+    let check2 = '';
+    let check3 = '';
 
     if (question === '') {
       errors.push('問題が空です');
@@ -55,8 +60,18 @@ app.post('/create',
       errors.push('正解の選択肢にチェックを入れてください');
     }
 
+    if (radio1 === 'on') {
+      check1 = 'checked';
+    } else if (radio2 === 'on') {
+      check2 = 'checked';
+    } else if (radio3 === 'on') {
+      check3 = 'checked';
+    }
+
     if (errors.length > 0) {
-      res.render('index.ejs', { errors });
+      res.render('index.ejs', {
+        errors, question, choices1, choices2, choices3, check1, check2, check3,
+      });
     } else {
       next();
     }
