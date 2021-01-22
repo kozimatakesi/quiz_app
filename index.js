@@ -28,13 +28,15 @@ app.get('/index', (req, res) => {
 app.post('/create',
 // 入力値の空チェック
   (req, res, next) => {
-    const { question } = req.body;
-    const { choices1 } = req.body;
-    const { choices2 } = req.body;
-    const { choices3 } = req.body;
-    const { radio1 } = req.body;
-    const { radio2 } = req.body;
-    const { radio3 } = req.body;
+    const {
+      question,
+      choices1,
+      choices2,
+      choices3,
+      radio1,
+      radio2,
+      radio3,
+    } = req.body;
     const errors = [];
 
     if (question === '') {
@@ -54,7 +56,7 @@ app.post('/create',
     }
 
     if (errors.length > 0) {
-      res.render('index.ejs', { errors: errors });
+      res.render('index.ejs', { errors });
     } else {
       next();
     }
