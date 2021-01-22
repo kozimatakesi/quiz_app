@@ -3,6 +3,7 @@ const mysql = require('mysql');
 
 const app = express();
 app.use(express.urlencoded({ extended: false }));
+app.set('views', '../client/views');
 
 const connection = mysql.createConnection({
   host: 'localhost',
@@ -56,16 +57,14 @@ app.post('/create',
     if (choices3 === '') {
       errors.push('選択肢3が空です');
     }
-    if (radio1 !== 'on' && radio2 !== 'on' && radio3 !== 'on') {
-      errors.push('正解の選択肢にチェックを入れてください');
-    }
-
     if (radio1 === 'on') {
       check1 = 'checked';
     } else if (radio2 === 'on') {
       check2 = 'checked';
     } else if (radio3 === 'on') {
       check3 = 'checked';
+    } else {
+      errors.push('正解の選択肢にチェックを入れてください');
     }
 
     if (errors.length > 0) {
